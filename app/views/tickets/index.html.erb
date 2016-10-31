@@ -1,0 +1,29 @@
+<h1 align="center">Tickets</h1>
+
+<% @tickets.each do |t| %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="well well-lg">
+        <div class="ticket-subject">
+          <%= link_to t.subject, ticket_path(t) %>
+        </div>
+        <div class="ticket-message">
+          <%= truncate(t.message, length: 40) %>
+        </div>
+        <div class="ticket-actions">
+          <% if t.resolved %>
+            <%= link_to "Open", open_ticket_path(t), class: "btn btn-xs btn-warning"%>
+          <% else %>
+            <%= link_to "Close", close_ticket_path(t), class: "btn btn-xs btn-primary"%>
+          <% end %>
+          <%= link_to "Delete", ticket_path(t), method: :delete,  
+                                data: { confirm: "Are you sure you want to delete this ticket?" }, 
+                                class: "btn btn-xs btn-danger" %>
+        </div>        
+      </div>
+    </div>
+  </div>
+<% end %>
+<div class="text-center">
+  <%= link_to "Create new ticket", new_ticket_path, class: "btn btn-lg btn-primary"%>
+</div>

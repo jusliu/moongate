@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="well well-sm">
+				<div class="row">
+					<div class="col-sm-6 col-md-5">
+						<img src="https://minotar.net/body/clone1018/260.png" alt="" class="img-rounded img-responsive" />
+					</div>
+					<div class="col-sm-6 col-md-7">
+						<h4>Hello <%= @user.nickname %>!</h4>
+						<p><span class="glyphicon glyphicon-envelope"></span> <strong>Nickname:</strong> <%= @user.nickname %></p>
+						<p><span class="glyphicon glyphicon-envelope"></span> <strong>Email:</strong> <%= @user.email %></p>
+						<p><span class="glyphicon glyphicon-envelope"></span> <strong>Moderator?:</strong> 
+							<% if @user.permission > 0 %>
+							<%= raw("Yes") %>
+							<% else %>
+							<%= raw "No" %>
+							<% end %>
+						</p>
+						<p><span class="glyphicon glyphicon-envelope"></span> <strong>Support Ticket Count:</strong> <%= @user.tickets.count %></p>
+						<form action="/tickets">
+						    <input type="submit" value="View Support Tickets" class="btn btn-primary">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

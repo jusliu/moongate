@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Moongate</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">MoonGate</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+        <% if user_signed_in? %>
+          <li><a href="/users/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+          <li><a href="/tickets"><span class="glyphicon glyphicon-envelope"></span> Support Tickets <strong>(<%= current_user.tickets.count %>)</strong></a></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to(raw("<span class=\"glyphicon glyphicon-log-in\"></span> Logout"), destroy_user_session_path, :method => :delete) %></li>
+        <% else %>
+          <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-out"></span> Login</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<%= yield %>
+
+</body>
+</html>
